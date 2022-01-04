@@ -1,6 +1,6 @@
 # chat-app
 
-## A chatting app made with vite-react
+## A real-time chatting app made with vite-react and google authentication technology
 
 ### Technologies used in this project
 1. VITE
