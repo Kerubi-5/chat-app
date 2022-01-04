@@ -41,8 +41,8 @@ const Chatroom = ({ user, signOutClick }) => {
           );
         })}
       <input type="text" ref={messageRef} onKeyDown={(e) => saveToDB(e)} />
-      <button onClick={saveToDB}>TEST</button>
-      <button onClick={() => signOutClick("click")}>Sign Out</button>
+      <button onClick={() => saveToDB("click")}>Send</button>
+      <button onClick={signOutClick}>Sign Out</button>
     </div>
   );
 };
