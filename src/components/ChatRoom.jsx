@@ -1,17 +1,22 @@
-import { addDoc, getDocs } from "firebase/firestore";
-import { useState } from "react";
+import { addDoc, query, orderBy, limit, Timestamp } from "firebase/firestore";
+import { useState, useRef } from "react";
 import { messages_db } from "../utils/firebase";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
 const Chatroom = ({ user, signOutClick }) => {
   const [myUser, setUser] = useState({ user });
-  const printUser = (user) => {
-    console.log(JSON.stringify(user));
-  };
+
+  const messageRef = useRef(null);
+
+  const myQuery = query(messages_db, orderBy("createdAt"), limit(25));
+
+  const [messages] = useCollectionData(myQuery, { idField: "id" });
 
   const saveToDB = async () => {
     const myMessage = {
-      msg: "Nice",
+      msg: messageRef.current.value,
       user: myUser.user.displayName,
+      createdAt: Timestamp.now(),
     };
     try {
       await addDoc(messages_db, myMessage);
@@ -20,27 +25,34 @@ const Chatroom = ({ user, signOutClick }) => {
     }
   };
 
-  const readData = async () => {
-    const querySnapshot = await getDocs(messages_db);
-    querySnapshot.forEach((doc) => {
-      console.log(`${doc.id} => ${doc.data()}`);
-    });
-  };
-
   // useEffect(() => {
-  //   const db_query = query(messages_db, limit(10));
-  //   return () => {
-  //     db_query;
+  //   const getMessages = async () => {
+  //     const querySnapshot = await getDocs(messages_db);
+  //     // querySnapshot.forEach((doc) => {
+  //     //   console.log(`${doc.id} => ${doc.data()}`);
+  //     // });
+  //     setMessageList(
+  //       querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+  //     );
   //   };
+
+  //   getMessages();
   // }, []);
   return (
     <div>
       <h1>Good day {myUser.user.displayName}</h1>
       Chatroom
-      <button onClick={() => printUser({ user })}>Print user</button>
-      <button onClick={() => signOutClick()}>Sign Out</button>
+      {messages &&
+        messages.map((message) => {
+          return (
+            <h1 key={message.id}>
+              <span>{message.user}</span>: {message.msg}
+            </h1>
+          );
+        })}
+      <input type="text" ref={messageRef} />
       <button onClick={saveToDB}>TEST</button>
-      <button onClick={readData}>READ DATA</button>
+      <button onClick={() => signOutClick()}>Sign Out</button>
     </div>
   );
 };
