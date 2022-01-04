@@ -12,16 +12,19 @@ const Chatroom = ({ user, signOutClick }) => {
 
   const [messages] = useCollectionData(myQuery, { idField: "id" });
 
-  const saveToDB = async () => {
-    const myMessage = {
-      msg: messageRef.current.value,
-      user: myUser.user.displayName,
-      createdAt: Timestamp.now(),
-    };
-    try {
-      await addDoc(messages_db, myMessage);
-    } catch (err) {
-      console.log(err);
+  const saveToDB = async (e) => {
+    if (e.keyCode === 13 || e === "click") {
+      const myMessage = {
+        msg: messageRef.current.value,
+        user: myUser.user.displayName,
+        createdAt: Timestamp.now(),
+      };
+      try {
+        await addDoc(messages_db, myMessage);
+        messageRef.current.value = "";
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
@@ -37,9 +40,9 @@ const Chatroom = ({ user, signOutClick }) => {
             </h1>
           );
         })}
-      <input type="text" ref={messageRef} />
+      <input type="text" ref={messageRef} onKeyDown={(e) => saveToDB(e)} />
       <button onClick={saveToDB}>TEST</button>
-      <button onClick={() => signOutClick()}>Sign Out</button>
+      <button onClick={() => signOutClick("click")}>Sign Out</button>
     </div>
   );
 };
