@@ -44,7 +44,6 @@ function App() {
   };
   return (
     <div className="App">
-      Hello please sign in
       {user ? (
         <ChatRoom user={user} signOutClick={signOutHandler} />
       ) : (
