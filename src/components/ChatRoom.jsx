@@ -8,7 +8,7 @@ const Chatroom = ({ user, signOutClick }) => {
 
   const messageRef = useRef(null);
 
-  const myQuery = query(messages_db, orderBy("createdAt"), limit(25));
+  const myQuery = query(messages_db, orderBy("createdAt", "desc"), limit(10));
 
   const [messages] = useCollectionData(myQuery, { idField: "id" });
 
@@ -25,25 +25,12 @@ const Chatroom = ({ user, signOutClick }) => {
     }
   };
 
-  // useEffect(() => {
-  //   const getMessages = async () => {
-  //     const querySnapshot = await getDocs(messages_db);
-  //     // querySnapshot.forEach((doc) => {
-  //     //   console.log(`${doc.id} => ${doc.data()}`);
-  //     // });
-  //     setMessageList(
-  //       querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-  //     );
-  //   };
-
-  //   getMessages();
-  // }, []);
   return (
     <div>
       <h1>Good day {myUser.user.displayName}</h1>
       Chatroom
       {messages &&
-        messages.map((message) => {
+        messages.reverse().map((message) => {
           return (
             <h1 key={message.id}>
               <span>{message.user}</span>: {message.msg}
