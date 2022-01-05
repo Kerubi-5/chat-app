@@ -4,7 +4,7 @@ import { messages_db } from "../utils/firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import ChatMessage from "../components/ChatMessage";
 import { AuthContext } from "../contexts/AuthContext";
-import hacker_img from "../assets/hacker-man.jpg";
+import hacker_img from "../assets/hacker.jpg";
 
 const Chatroom = ({ signOutClick }) => {
   const [isOpen, setOpen] = useState(false);
@@ -55,7 +55,11 @@ const Chatroom = ({ signOutClick }) => {
             <i className="bx bx-menu bx-xs"></i>
           </div>
 
-          <div className="dropdown__options">
+          <div
+            className={
+              isOpen ? "dropdown__options active" : "dropdown__options"
+            }
+          >
             <p>Hello {isAnon ? "Anonymous" : user.displayName}</p>
             <button onClick={signOutClick}>Sign Out</button>
           </div>
