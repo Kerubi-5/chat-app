@@ -3,7 +3,7 @@ import { signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import { auth, provider } from "../utils/firebase";
 
 import Signin from "../components/SignIn";
-import ChatRoom from "../components/ChatRoom";
+import ChatRoom from "./ChatRoom";
 
 // GLOBAL VARS
 
