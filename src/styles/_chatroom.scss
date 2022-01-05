@@ -1,0 +1,36 @@
+.chatroom {
+  width: min(90%, 1000px);
+  margin-inline: auto;
+
+  border: 3px solid black;
+}
+
+.chatroom__header {
+  width: 100%;
+  background-color: $lavender;
+}
+
+.chatroom__body {
+  padding: 10px;
+  height: 80vh;
+  margin: 10vh 0 10vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatroom__footer {
+  position: relative;
+  width: 100%;
+
+  background-color: $lavender;
+
+  & button {
+    position: absolute;
+    padding: 5px;
+
+    top: 0;
+    right: 0;
+    max-height: 100%;
+  }
+}
