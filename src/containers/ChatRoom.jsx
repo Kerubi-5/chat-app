@@ -38,10 +38,14 @@ const Chatroom = ({ signOutClick }) => {
     }
   };
 
+  useEffect(() => {
+    dummy.current.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
   return (
     <div className="chatroom">
       <div className="chatroom__header">
-        <h1>Chatroom</h1>
+        <h1>Christian Chat Room</h1>
         <div className="dropdown">
           <img src={user.photoURL} alt="User's image" />
           <button onClick={signOutClick}>Sign Out</button>

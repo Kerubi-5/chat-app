@@ -37,7 +37,7 @@
 }
 
 .message {
-  max-width: 500px;
+  width: min(500px, 90%);
   word-wrap: break-word;
   padding: 10px;
   border: 2px solid $lumber;

@@ -21,21 +21,46 @@ button {
   background-color: transparent;
 }
 
+i {
+  &.bxl-google {
+    background: -webkit-linear-gradient(#ea4335, #34a853, #fbbc05);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  &.bxl-facebook {
+    color: #087ae9;
+  }
+  &.bxl-twitter {
+    color: #1d9bf0;
+  }
+}
+
 // REUSABLE CSS
 
 .container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  align-items: center;
   width: min(90%, $container-max-width);
   margin-inline: auto;
 }
 
 .title-header {
   font-weight: $title-size;
+  text-align: center;
 }
 
 .btn {
   background-color: $violet;
+  color: #fff;
   padding: 1rem;
+
+  &.btn-login {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: min($loginBtnSize, 90%);
+  }
 }
