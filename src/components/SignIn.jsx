@@ -17,7 +17,7 @@ const Signin = ({ google, facebook, twitter, anonymous }) => {
         <span>Twitter</span>
       </button>
       <button className="btn btn-login" onClick={anonymous}>
-        <i class="bx bxs-user"></i>&nbsp;
+        <i className="bx bxs-user"></i>&nbsp;
         <span>Anonymous</span>
       </button>
     </div>

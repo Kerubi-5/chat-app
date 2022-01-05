@@ -21,6 +21,11 @@ button {
   background-color: transparent;
 }
 
+img {
+  width: 100%;
+  height: auto;
+}
+
 i {
   &.bxl-google {
     background: -webkit-linear-gradient(#ea4335, #34a853, #fbbc05);
@@ -62,5 +67,29 @@ i {
     justify-content: space-around;
     align-items: center;
     width: min($loginBtnSize, 90%);
+  }
+}
+
+.logo {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+
+.dropdown {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  &__menu {
+    cursor: pointer;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  &__options {
+    display: none;
+    &.active {
+      display: flex;
+    }
   }
 }

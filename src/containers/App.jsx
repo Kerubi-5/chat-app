@@ -1,4 +1,4 @@
-import { signInWithPopup, signOut } from "firebase/auth";
+import { signInWithPopup, signInAnonymously, signOut } from "firebase/auth";
 import {
   auth,
   google_provider,
@@ -30,7 +30,20 @@ function App() {
     signInWithPopup(auth, twitter_provider);
   };
 
+  const anonymousHandler = () => {
+    signInAnonymously(auth)
+      .then(() => {
+        // Signed in..
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ...
+      });
+  };
+
   const signOutHandler = () => {
+    console.log(user);
     signOut(auth)
       .then(() => {
         console.log("Sign out succesfully");
@@ -53,6 +66,7 @@ function App() {
             google={googleHandler}
             facebook={facebookHandler}
             twitter={twitterHandler}
+            anonymous={anonymousHandler}
           />
         )}
       </div>
