@@ -12,16 +12,25 @@
 
 .chatroom__body {
   height: 80vh;
-
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  gap: 1rem;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
 }
 
 .message {
+  padding: 10px;
+  border: 2px solid $lumber;
+  border-radius: 15px;
   &.sent {
     color: $lavender;
     align-self: flex-end;
+    flex-direction: reverse;
+  }
+  &.received {
+    align-self: flex-start;
   }
 }
 
