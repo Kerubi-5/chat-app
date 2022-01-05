@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
 
 $thistle: #e0bbe4;
 $lavender: #957dad;
@@ -9,9 +9,12 @@ $lumber: #ffdfd3;
 // TYPOGRAPHY
 $poppins: "Poppins", sans-serif;
 
-$font-300: 300;
+$text-size: 300;
+$normal-size: 400;
+$title-size: 700;
 
 // SIZE
+$container-max-width: 500px;
 $box-max-width: 1000px;
 
 // Elements
