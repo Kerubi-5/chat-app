@@ -1,11 +1,12 @@
 import { addDoc, query, orderBy, limit, Timestamp } from "firebase/firestore";
-import { useState, useRef } from "react";
+import { useContext, useRef, useEffect } from "react";
 import { messages_db } from "../utils/firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import ChatMessage from "../components/ChatMessage";
+import { AuthContext } from "../contexts/AuthContext";
 
-const Chatroom = ({ user, signOutClick }) => {
-  const [myUser, setUser] = useState({ user });
+const Chatroom = ({ signOutClick }) => {
+  const myUser = useContext(AuthContext);
   const dummy = useRef();
 
   const messageRef = useRef(null);
@@ -22,7 +23,7 @@ const Chatroom = ({ user, signOutClick }) => {
     if (e.keyCode === 13 || e === "click") {
       const myMessage = {
         msg: messageRef.current.value,
-        user: myUser.user.displayName,
+        user: myUser.displayName,
         createdAt: Timestamp.now(),
       };
       try {
@@ -39,13 +40,13 @@ const Chatroom = ({ user, signOutClick }) => {
     <div className="chatroom">
       <div className="chatroom__header">
         <h1>Chatroom</h1>
-        <h4>Good day {myUser.user.displayName}</h4>
+        Hello {myUser.displayName}
         <button onClick={signOutClick}>Sign Out</button>
       </div>
       <div className="chatroom_body">
         {messages &&
           messages.reverse().map((message) => {
-            return <ChatMessage message={message} />;
+            return <ChatMessage key={message.id} message={message} />;
           })}
         <span ref={dummy}></span>
       </div>

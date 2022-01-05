@@ -1,6 +1,9 @@
-import { useState } from "react";
 import { signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import { auth, provider } from "../utils/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+
+// CONTEXTS
+import { AuthContext } from "../contexts/AuthContext";
 
 import Signin from "../components/SignIn";
 import ChatRoom from "./ChatRoom";
@@ -8,7 +11,7 @@ import ChatRoom from "./ChatRoom";
 // GLOBAL VARS
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, loading, error] = useAuthState(auth);
 
   const googleHandler = () => {
     signInWithPopup(auth, provider)
@@ -43,13 +46,19 @@ function App() {
       });
   };
   return (
-    <div className="App">
-      {user ? (
-        <ChatRoom user={user} signOutClick={signOutHandler} />
-      ) : (
-        <Signin googleSignIn={googleHandler} />
-      )}
-    </div>
+    <AuthContext.Provider value={user}>
+      <div className="App">
+        {user ? (
+          loading ? (
+            "page is loading"
+          ) : (
+            <ChatRoom signOutClick={signOutHandler} />
+          )
+        ) : (
+          <Signin googleSignIn={googleHandler} />
+        )}
+      </div>
+    </AuthContext.Provider>
   );
 }
 
