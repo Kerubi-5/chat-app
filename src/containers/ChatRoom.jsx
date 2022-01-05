@@ -6,7 +6,7 @@ import ChatMessage from "../components/ChatMessage";
 import { AuthContext } from "../contexts/AuthContext";
 
 const Chatroom = ({ signOutClick }) => {
-  const myUser = useContext(AuthContext);
+  const user = useContext(AuthContext);
   const dummy = useRef();
 
   const messageRef = useRef(null);
@@ -23,8 +23,10 @@ const Chatroom = ({ signOutClick }) => {
     if (e.keyCode === 13 || e === "click") {
       const myMessage = {
         msg: messageRef.current.value,
-        user: myUser.displayName,
+        user: user.displayName,
         createdAt: Timestamp.now(),
+        photoURL: user.photoURL,
+        uid: user.uid,
       };
       try {
         await addDoc(messages_db, myMessage);
@@ -40,10 +42,10 @@ const Chatroom = ({ signOutClick }) => {
     <div className="chatroom">
       <div className="chatroom__header">
         <h1>Chatroom</h1>
-        Hello {myUser.displayName}
+        Hello {user.displayName}
         <button onClick={signOutClick}>Sign Out</button>
       </div>
-      <div className="chatroom_body">
+      <div className="chatroom__body">
         {messages &&
           messages.reverse().map((message) => {
             return <ChatMessage key={message.id} message={message} />;
