@@ -62,7 +62,7 @@ const Chatroom = ({ signOutClick }) => {
           onKeyDown={(e) => saveToDB(e)}
         />
         <button onClick={() => saveToDB("click")}>
-          <i class="bx bx-send"></i>
+          <i className="bx bx-send"></i>
         </button>
       </div>
     </div>

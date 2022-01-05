@@ -1,6 +1,11 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  TwitterAuthProvider,
+} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBRwXTWlxvyFDCcNna2eF-M3v8MmxkCG4A",
@@ -12,8 +17,15 @@ const firebaseConfig = {
   measurementId: "G-150Z02R9MW",
 };
 
+// INIT VARIABLES
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const provider = new GoogleAuthProvider();
+
+// AUTH PROVIDERS
+export const google_provider = new GoogleAuthProvider();
+export const facebook_provider = new FacebookAuthProvider();
+export const twitter_provider = new TwitterAuthProvider();
+
+// FIRESTORE
 export const db = getFirestore(app);
 export const messages_db = collection(db, "messages");
