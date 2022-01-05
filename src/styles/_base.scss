@@ -2,6 +2,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  text-decoration: none;
+
   &::before,
   &::after {
     box-sizing: border-box;
@@ -10,4 +12,26 @@
 
 html {
   scroll-behavior: smooth;
+  font-family: $poppins;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+// REUSABLE CSS
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: min(90%, 500px);
+  margin-inline: auto;
+}
+
+.btn {
+  background-color: $violet;
+  padding: 1rem;
 }

@@ -42,8 +42,10 @@ const Chatroom = ({ signOutClick }) => {
     <div className="chatroom">
       <div className="chatroom__header">
         <h1>Chatroom</h1>
-        Hello {user.displayName}
-        <button onClick={signOutClick}>Sign Out</button>
+        <div className="dropdown">
+          <img src={user.photoURL} alt="User's image" />
+          <button onClick={signOutClick}>Sign Out</button>
+        </div>
       </div>
       <div className="chatroom__body">
         {messages &&
@@ -59,7 +61,9 @@ const Chatroom = ({ signOutClick }) => {
           placeholder="Send a message..."
           onKeyDown={(e) => saveToDB(e)}
         />
-        <button onClick={() => saveToDB("click")}>Send</button>
+        <button onClick={() => saveToDB("click")}>
+          <i class="bx bx-send"></i>
+        </button>
       </div>
     </div>
   );

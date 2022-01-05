@@ -7,7 +7,10 @@ const ChatMessage = ({ message }) => {
 
   return (
     <div className={`message ${messageClass}`}>
-      <div className="message__logo">{message.user}</div>
+      <div className="message__logo">
+        <img src={message.photoURL} alt="User image" />
+        {message.user}
+      </div>
       <div className="message__content">{message.msg}</div>
     </div>
   );

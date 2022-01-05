@@ -1,8 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;900&display=swap");
+
 $thistle: #e0bbe4;
 $lavender: #957dad;
 $violet: #d291bc;
 $cotton-candy: #fec8d8;
 $lumber: #ffdfd3;
+
+// TYPOGRAPHY
+$poppins: "Poppins", sans-serif;
+
+$font-300: 300;
+
+// SIZE
+$box-max-width: 1000px;
 
 // Elements
 $buttons: (
